@@ -19,7 +19,7 @@ git pull
 echo "=== 远程：构建 Docker 镜像 ==="
 docker compose build
 echo "=== 远程：启动容器 ==="
-docker-compose up -d
+docker compose up -d
 echo "=== 部署完成 ==="
 EOF
 
