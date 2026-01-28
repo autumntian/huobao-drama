@@ -1,7 +1,7 @@
 <template>
   <el-dialog
     v-model="visible"
-    title="图片详情"
+    title="图片详情1111111"
     width="900px"
     @close="handleClose"
   >
