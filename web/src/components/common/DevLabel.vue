@@ -16,7 +16,7 @@ const props = defineProps<{
 // 在浏览器控制台输入: localStorage.setItem('showDevLabels', 'true') 然后刷新页面即可显示
 // 关闭: localStorage.removeItem('showDevLabels')
 const isVisible = computed(() => {
-  return import.meta.env.DEV || localStorage.getItem('showDevLabels') === 'true'
+  return true
 })
 
 const color = computed(() => props.color || '#ff6b6b')
