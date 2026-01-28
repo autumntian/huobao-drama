@@ -1,5 +1,6 @@
 <template>
   <div class="script-edit-container">
+    <DevLabel name="ScriptEdit.vue" color="#7f8c8d" />
     <el-page-header @back="goBack" title="返回">
       <template #content>
         <h2>剧本编辑</h2>

@@ -2,6 +2,7 @@
   <!-- Drama List Page - Refactored with modern minimalist design -->
   <!-- 短剧列表页面 - 使用现代简约设计重构 -->
   <div class="page-container">
+    <DevLabel name="DramaList.vue" color="#3498db" />
     <div class="content-wrapper animate-fade-in">
       <!-- App Header / 应用头部 -->
       <AppHeader :fixed="false">

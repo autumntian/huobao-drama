@@ -1,5 +1,6 @@
 <template>
   <div class="page-container">
+    <DevLabel name="DramaManagement.vue" color="#9b59b6" />
     <div class="content-wrapper animate-fade-in">
       <!-- Page Header / 页面头部 -->
       <AppHeader :fixed="false" :show-logo="false">

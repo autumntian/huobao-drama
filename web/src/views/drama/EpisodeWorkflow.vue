@@ -1,5 +1,6 @@
 <template>
   <div class="page-container">
+    <DevLabel name="EpisodeWorkflow.vue" color="#e67e22" />
     <div class="content-wrapper animate-fade-in">
       <AppHeader :fixed="false" :show-logo="false">
         <template #left>

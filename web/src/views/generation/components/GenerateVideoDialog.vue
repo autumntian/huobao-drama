@@ -6,6 +6,7 @@
     :close-on-click-modal="false"
     @close="handleClose"
   >
+    <DevLabel name="GenerateVideoDialog.vue" color="#ff5722" />
     <el-form :model="form" :rules="rules" ref="formRef" label-width="120px">
       <el-form-item label="选择剧本" prop="drama_id">
         <el-select v-model="form.drama_id" placeholder="选择剧本" @change="onDramaChange">

@@ -1,5 +1,6 @@
 <template>
   <div class="video-generation-container">
+    <DevLabel name="VideoGeneration.vue" color="#8e44ad" />
     <el-page-header @back="goBack" class="page-header">
       <template #content>
         <div class="header-content">

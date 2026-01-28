@@ -6,6 +6,7 @@
     :close-on-click-modal="false"
     @close="handleClose"
   >
+    <DevLabel name="GenerateImageDialog.vue" color="#00bcd4" />
     <el-form :model="form" :rules="rules" ref="formRef" label-width="120px">
       <el-form-item :label="$t('imageDialog.selectDrama')" prop="drama_id">
         <el-select v-model="form.drama_id" :placeholder="$t('imageDialog.selectDrama')" @change="onDramaChange">

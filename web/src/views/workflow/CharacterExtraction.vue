@@ -1,5 +1,6 @@
 <template>
   <div class="character-extraction-container">
+    <DevLabel name="CharacterExtraction.vue" color="#e74c3c" />
     <el-page-header @back="goBack" :title="$t('character.backToProject')">
       <template #content>
         <h2>{{ $t('character.title') }}</h2>

@@ -1,5 +1,6 @@
 <template>
   <div class="image-generation-container">
+    <DevLabel name="ImageGeneration.vue" color="#2980b9" />
     <el-page-header @back="goBack" class="page-header">
       <template #content>
         <div class="header-content">

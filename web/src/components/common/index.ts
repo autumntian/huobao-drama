@@ -21,3 +21,7 @@ export { default as AIConfigDialog } from './AIConfigDialog.vue'
 // Layout Components / 布局组件
 export { default as AppLayout } from './AppLayout.vue'
 export { default as AppHeader } from './AppHeader.vue'
+
+// Dev Tools / 开发工具
+export { default as DevLabel } from './DevLabel.vue'
+

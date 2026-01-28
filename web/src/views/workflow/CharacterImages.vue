@@ -1,5 +1,6 @@
 <template>
   <div class="character-images-container">
+    <DevLabel name="CharacterImages.vue" color="#c0392b" />
     <el-page-header @back="goBack" title="返回项目">
       <template #content>
         <h2>角色形象生成</h2>

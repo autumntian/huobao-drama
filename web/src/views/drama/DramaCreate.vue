@@ -1,6 +1,7 @@
 <template>
   <!-- Drama Create Page / 创建短剧页面 -->
   <div class="page-container">
+    <DevLabel name="DramaCreate.vue" color="#27ae60" />
     <div class="content-wrapper animate-fade-in">
       <!-- Header / 头部 -->
       <AppHeader :fixed="false" :show-logo="false">

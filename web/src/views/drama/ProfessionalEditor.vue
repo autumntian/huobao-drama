@@ -1,5 +1,6 @@
 <template>
   <div class="professional-editor">
+    <DevLabel name="ProfessionalEditor.vue" color="#1abc9c" />
     <!-- 顶部工具栏 -->
     <AppHeader
       :fixed="false"

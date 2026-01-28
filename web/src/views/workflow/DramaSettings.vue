@@ -1,5 +1,6 @@
 <template>
   <div class="drama-settings-container">
+    <DevLabel name="DramaSettings.vue" color="#d35400" />
     <el-page-header @back="goBack" title="返回项目">
       <template #content>
         <h2>项目设置</h2>

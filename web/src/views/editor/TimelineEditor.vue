@@ -1,5 +1,6 @@
 <template>
   <div class="timeline-editor-page">
+    <DevLabel name="TimelineEditor.vue" color="#16a085" />
     <div class="editor-header">
       <el-button link @click="goBack" class="back-button">
         <el-icon><ArrowLeft /></el-icon>

@@ -10,6 +10,7 @@ import App from './App.vue'
 import router from './router'
 import i18n from './locales'
 import './assets/styles/main.css'
+import { DevLabel } from './components/common'
 
 // Apply theme before app mounts to prevent flash
 // 在应用挂载前应用主题，防止闪烁
@@ -28,5 +29,8 @@ app.use(ElementPlus)
 for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
   app.component(key, component)
 }
+
+// 全局注册开发标签组件
+app.component('DevLabel', DevLabel)
 
 app.mount('#app')

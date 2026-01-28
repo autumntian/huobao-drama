@@ -8,6 +8,7 @@
     class="create-dialog"
     @closed="handleClosed"
   >
+    <DevLabel name="CreateDramaDialog.vue" color="#e91e63" />
     <div class="dialog-desc">{{ $t('drama.createDesc') }}</div>
     
     <el-form 

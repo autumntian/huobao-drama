@@ -1,5 +1,6 @@
 <template>
   <div class="page-container">
+    <DevLabel name="AIConfig.vue" color="#34495e" />
     <div class="content-wrapper animate-fade-in">
       <!-- Page Header / 页面头部 -->
       <PageHeader

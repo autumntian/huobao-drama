@@ -1,5 +1,6 @@
 <template>
   <div class="storyboard-edit-container">
+    <DevLabel name="StoryboardEdit.vue" color="#f39c12" />
     <el-page-header @back="goBack" :title="$t('common.back')">
       <template #content>
         <h2>{{ $t('storyboard.edit') }}</h2>
