@@ -137,7 +137,7 @@ export default {
     }
   },
   drama: {
-    title: '短剧管理111111',
+    title: '短剧管理',
     create: '创建项目',
     totalProjects: '共 {count} 个项目',
     createNew: '创建新项目',
