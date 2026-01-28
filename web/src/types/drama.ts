@@ -121,6 +121,7 @@ export interface CreateDramaRequest {
   description?: string
   genre?: string
   tags?: string
+  style?: string
 }
 
 export interface UpdateDramaRequest {
@@ -128,6 +129,7 @@ export interface UpdateDramaRequest {
   description?: string
   genre?: string
   tags?: string
+  style?: string
   status?: DramaStatus
 }
 
