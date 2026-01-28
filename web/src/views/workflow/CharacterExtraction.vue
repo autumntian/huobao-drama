@@ -63,7 +63,7 @@
     </el-card>
 
     <!-- 编辑对话框 -->
-    <el-dialog v-model="editDialogVisible" title="编辑角色" width="600px">
+    <el-dialog v-model="editDialogVisible" title="编辑角色" width="650px">
       <el-form :model="editForm" label-width="80px">
         <el-form-item label="姓名">
           <el-input v-model="editForm.name" />
@@ -77,6 +77,54 @@
         <el-form-item label="外貌">
           <el-input v-model="editForm.appearance" type="textarea" :rows="3" />
         </el-form-item>
+
+        <!-- 图片风格配置 -->
+        <el-divider content-position="left">
+          <span class="divider-text">🎨 图片风格</span>
+        </el-divider>
+
+        <div class="style-grid">
+          <el-form-item label="画面风格">
+            <el-select
+              v-model="editForm.visualStyle"
+              placeholder="请选择"
+              clearable
+            >
+              <el-option
+                v-for="item in visualStyleOptions"
+                :key="item.value"
+                :label="item.label"
+                :value="item.value"
+              />
+            </el-select>
+          </el-form-item>
+
+          <el-form-item label="色调风格">
+            <el-select
+              v-model="editForm.colorTone"
+              placeholder="请选择"
+              clearable
+            >
+              <el-option
+                v-for="item in colorToneOptions"
+                :key="item.value"
+                :label="item.label"
+                :value="item.value"
+              />
+            </el-select>
+          </el-form-item>
+        </div>
+
+        <!-- 风格预览 -->
+        <div v-if="hasStyleSelected" class="style-preview">
+          <span class="preview-label">已选风格：</span>
+          <el-tag v-if="editForm.visualStyle" type="primary" size="small">
+            {{ getStyleLabel('visual', editForm.visualStyle) }}
+          </el-tag>
+          <el-tag v-if="editForm.colorTone" type="warning" size="small">
+            {{ getStyleLabel('color', editForm.colorTone) }}
+          </el-tag>
+        </div>
       </el-form>
       <template #footer>
         <el-button @click="editDialogVisible = false">取消</el-button>
@@ -87,7 +135,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, reactive, onMounted } from 'vue'
+import { ref, reactive, computed, onMounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { ElMessage } from 'element-plus'
 import { Plus } from '@element-plus/icons-vue'
@@ -107,8 +155,52 @@ const editForm = reactive({
   role: '',
   personality: '',
   appearance: '',
-  background: ''
+  background: '',
+  visualStyle: '',
+  colorTone: ''
 })
+
+// 画面风格选项
+const visualStyleOptions = [
+  { value: 'realistic', label: '写实风格' },
+  { value: 'anime', label: '动漫风格' },
+  { value: 'cartoon', label: '卡通风格' },
+  { value: 'oil-painting', label: '油画风格' },
+  { value: 'watercolor', label: '水彩风格' },
+  { value: 'ink-wash', label: '水墨风格' },
+  { value: 'pixel-art', label: '像素风格' },
+  { value: 'cyberpunk', label: '赛博朋克' },
+  { value: '3d-render', label: '3D渲染' },
+  { value: 'minimalist', label: '极简风格' }
+]
+
+// 色调风格选项
+const colorToneOptions = [
+  { value: 'warm', label: '暖色调' },
+  { value: 'cool', label: '冷色调' },
+  { value: 'vibrant', label: '鲜艳明亮' },
+  { value: 'muted', label: '柔和淡雅' },
+  { value: 'monochrome', label: '黑白单色' },
+  { value: 'sepia', label: '复古棕褐' },
+  { value: 'neon', label: '霓虹闪烁' },
+  { value: 'pastel', label: '马卡龙色' }
+]
+
+// 是否选择了风格
+const hasStyleSelected = computed(() => {
+  return editForm.visualStyle || editForm.colorTone
+})
+
+// 获取风格标签名称
+const getStyleLabel = (type: string, value: string) => {
+  const optionsMap: Record<string, any[]> = {
+    visual: visualStyleOptions,
+    color: colorToneOptions
+  }
+  const options = optionsMap[type] || []
+  const option = options.find(o => o.value === value)
+  return option?.label || value
+}
 
 const goBack = () => {
   router.push(`/dramas/${dramaId}`)
@@ -120,7 +212,9 @@ const addCharacter = () => {
     role: '',
     personality: '',
     appearance: '',
-    background: ''
+    background: '',
+    visualStyle: '',
+    colorTone: ''
   })
   editDialogVisible.value = true
 }
@@ -139,12 +233,31 @@ const saveCharacters = async () => {
 }
 
 const editCharacter = (character: Character) => {
-  Object.assign(editForm, character)
+  Object.assign(editForm, {
+    ...character,
+    visualStyle: (character as any).visualStyle || '',
+    colorTone: (character as any).colorTone || ''
+  })
   editDialogVisible.value = true
 }
 
 const saveCharacter = () => {
-  // TODO: 保存角色信息
+  // 生成风格提示词
+  const styleParts: string[] = []
+  if (editForm.visualStyle) {
+    const opt = visualStyleOptions.find(o => o.value === editForm.visualStyle)
+    if (opt) styleParts.push(opt.label)
+  }
+  if (editForm.colorTone) {
+    const opt = colorToneOptions.find(o => o.value === editForm.colorTone)
+    if (opt) styleParts.push(opt.label)
+  }
+
+  // 将风格信息保存到角色数据中
+  const stylePrompt = styleParts.join('，')
+  console.log('保存角色风格:', stylePrompt)
+
+  // TODO: 保存角色信息到后端
   editDialogVisible.value = false
   ElMessage.success('保存成功')
 }
@@ -206,5 +319,40 @@ onMounted(() => {
 .actions {
   margin-top: 30px;
   text-align: center;
+}
+
+/* 风格配置样式 */
+.divider-text {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--el-text-color-primary);
+}
+
+.style-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0 16px;
+}
+
+@media (max-width: 600px) {
+  .style-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.style-preview {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  padding: 12px;
+  background: var(--el-fill-color-light);
+  border-radius: 6px;
+  margin-top: 8px;
+}
+
+.preview-label {
+  font-size: 13px;
+  color: var(--el-text-color-secondary);
 }
 </style>
