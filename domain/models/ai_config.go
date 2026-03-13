@@ -7,6 +7,13 @@ import (
 	"time"
 )
 
+// Service type constants for AI configurations.
+const (
+	ServiceTypeText  = "text"
+	ServiceTypeImage = "image"
+	ServiceTypeVideo = "video"
+)
+
 type AIServiceConfig struct {
 	ID            uint       `gorm:"primaryKey;autoIncrement" json:"id"`
 	ServiceType   string     `gorm:"type:varchar(50);not null" json:"service_type"` // text, image, video

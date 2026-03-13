@@ -81,6 +81,7 @@ func SetupRouter(cfg *config.Config, db *gorm.DB, log *logger.Logger, localStora
 			aiConfigs.GET("", aiConfigHandler.ListConfigs)
 			aiConfigs.POST("", aiConfigHandler.CreateConfig)
 			aiConfigs.POST("/test", aiConfigHandler.TestConnection)
+			aiConfigs.GET("/models", aiConfigHandler.GetCurrentModels)
 			aiConfigs.GET("/:id", aiConfigHandler.GetConfig)
 			aiConfigs.PUT("/:id", aiConfigHandler.UpdateConfig)
 			aiConfigs.DELETE("/:id", aiConfigHandler.DeleteConfig)
