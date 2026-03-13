@@ -4,6 +4,7 @@ import (
 	"strconv"
 
 	"github.com/drama-generator/backend/application/services"
+	"github.com/drama-generator/backend/domain/models"
 	"github.com/drama-generator/backend/pkg/config"
 	"github.com/drama-generator/backend/pkg/logger"
 	"github.com/drama-generator/backend/pkg/response"
@@ -133,4 +134,23 @@ func (h *AIConfigHandler) TestConnection(c *gin.Context) {
 	}
 
 	response.Success(c, gin.H{"message": "连接测试成功"})
+}
+
+func (h *AIConfigHandler) GetCurrentModels(c *gin.Context) {
+	serviceTypes := []string{models.ServiceTypeText, models.ServiceTypeImage, models.ServiceTypeVideo}
+	result := make(map[string]interface{})
+
+	for _, serviceType := range serviceTypes {
+		config, err := h.aiService.GetDefaultConfig(serviceType)
+		if err != nil {
+			continue
+		}
+		result[serviceType] = gin.H{
+			"provider": config.Provider,
+			"model":    config.Model,
+			"name":     config.Name,
+		}
+	}
+
+	response.Success(c, result)
 }
